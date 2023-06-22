@@ -16,7 +16,12 @@
           {{ detail.title }}
         </h1>
 
-        <div v-if="detail.belongs_to_collection !== null">
+        <div
+          v-if="
+            detail.belongs_to_collection !== null &&
+            detail.belongs_to_collection.backdrop_path !== null
+          "
+        >
           <img
             :src="
               'https://image.tmdb.org/t/p/w500' +
