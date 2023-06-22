@@ -6,4 +6,6 @@
 
 <script>
 import cards from "@/components/cards/cards.vue";
+
+export default {};
 </script>
