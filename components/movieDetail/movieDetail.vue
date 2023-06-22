@@ -1,13 +1,41 @@
 <template>
-  <div :key="detail.id">
+  <div :key="detail.id" class="h-screen w-full">
     <p>
       {{ id }}
     </p>
-    <div v-if="detail.title">
-      <p>
-        {{ detail.title }}
-      </p>
-      <img :src="'https://image.tmdb.org/t/p/w500' + detail.poster_path" />
+    <div class="md:flex flex-column pt-2" v-if="detail.title">
+      <div class="md:pr-40 md:w-2/3">
+        <img
+          class=""
+          :src="'https://image.tmdb.org/t/p/w500' + detail.poster_path"
+        />
+      </div>
+
+      <div>
+        <h1 class="text-3xl pb-2">
+          {{ detail.title }}
+        </h1>
+
+        <div v-if="detail.belongs_to_collection !== null">
+          <img
+            :src="
+              'https://image.tmdb.org/t/p/w500' +
+              detail.belongs_to_collection.backdrop_path
+            "
+          />
+        </div>
+        <div v-else>
+          <img
+            :src="'https://image.tmdb.org/t/p/w500' + detail.backdrop_path"
+          />
+        </div>
+
+        <div class="bg-slate-800">
+          <p class="pt-2 md:w-4/5">
+            {{ detail.overview }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,9 +67,9 @@ export default {
       detail.value = response.data;
     }
 
-    onMounted(() => {
-      fetchDetail();
-    });
+    // onMounted(() => {
+    fetchDetail();
+    // });
 
     return {
       id,
