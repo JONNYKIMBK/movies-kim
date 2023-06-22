@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Hola</h1>
     <cards />
   </div>
 </template>

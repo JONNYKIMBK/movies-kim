@@ -4,7 +4,7 @@
       v-for="movie in movieList"
       :key="movie.id"
       :id="movie.id"
-      class="w-1/5 p-2"
+      class="w-full p-2 md:w-1/5"
     >
       <MovieCard :id="movie.id" />
     </div>
