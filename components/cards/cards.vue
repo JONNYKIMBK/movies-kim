@@ -1,13 +1,17 @@
 <template>
-  <div class="flex flex-wrap">
-    <div
-      v-for="movie in movieList"
-      :key="movie.id"
-      :id="movie.id"
-      class="w-full p-2 md:w-1/5"
-    >
-      <MovieCard :id="movie.id" />
+  <div>
+    <order />
+    <div class="flex flex-wrap">
+      <div
+        v-for="movie in movieList"
+        :key="movie.id"
+        :id="movie.id"
+        class="w-full p-2 md:w-1/5"
+      >
+        <MovieCard :id="movie.id" />
+      </div>
     </div>
+    <scrollUp />
   </div>
 </template>
 
@@ -32,13 +36,18 @@ export default {
       }
     );
 
+    // if (movieList.value.length === 0) {
+    movieStore.fetchMovies();
+    // }
+
     return {
       fetchMovies: movieStore.fetchMovies,
       movieList,
     };
   },
-  async mounted() {
-    await this.fetchMovies();
-  },
+
+  // async mounted() {
+  //   await this.fetchMovies();
+  // },
 };
 </script>

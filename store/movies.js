@@ -5,6 +5,7 @@ export const useMovieStore = defineStore({
   id: "movies",
   state: () => ({
     movies: [],
+    copyMovies: [],
   }),
   actions: {
     async fetchMovies() {
@@ -21,9 +22,51 @@ export const useMovieStore = defineStore({
         "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
         options
       );
-      console.log(response.data.results);
 
       this.movies = response.data.results;
+      this.copyMovies = [].concat(response.data.results);
+    },
+
+    filterOrder(order) {
+      if (order == "default") this.movies = [].concat(this.copyMovies);
+
+      if (order == "a-z") {
+        this.movies.sort((a, b) => {
+          const titleA = a.title.toUpperCase();
+          const titleB = b.title.toUpperCase();
+
+          if (titleA < titleB) return -1;
+
+          if (titleA > titleB) return 1;
+
+          return 0;
+        });
+      }
+
+      if (order == "z-a") {
+        this.movies.sort((a, b) => {
+          const titleA = a.title.toUpperCase();
+          const titleB = b.title.toUpperCase();
+
+          if (titleA < titleB) return 1;
+
+          if (titleA > titleB) return -1;
+
+          return 0;
+        });
+      }
+
+      if (order == "+") {
+        this.movies.sort((a, b) => {
+          return b.vote_average - a.vote_average;
+        });
+      }
+
+      if (order == "-") {
+        this.movies.sort((a, b) => {
+          return a.vote_average - b.vote_average;
+        });
+      }
     },
   },
 });

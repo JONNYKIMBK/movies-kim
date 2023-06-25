@@ -4,10 +4,13 @@
   >
     <NuxtLink :to="`/${movie.id}`">
       <div class="hover:opacity-60">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" />
+        <img
+          class="mb-2"
+          :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        />
 
         <h2
-          class="h-8 md:h-16 mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"
+          class="h-12 md:h-24 mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"
         >
           {{ movie.title }}
         </h2>

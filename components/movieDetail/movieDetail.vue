@@ -1,17 +1,14 @@
 <template>
   <div :key="detail.id" class="bg-slate-800 md:h-screen">
-    <p>
-      {{ id }}
-    </p>
     <div class="md:flex flex-column pt-2" v-if="detail.title">
-      <div class="md:pr-40 md:w-2/3 pb-2 md:pt-2">
+      <div class="pb-2 md:pt-2">
         <img
           class=""
           :src="'https://image.tmdb.org/t/p/w500' + detail.poster_path"
         />
       </div>
 
-      <div class="border-2 p-2 border-sky-500">
+      <div class="border-2 p-4 border-sky-500 m-2 md:w-3/4">
         <h1 class="text-3xl pb-2 font-bold">
           {{ detail.title }}
         </h1>
