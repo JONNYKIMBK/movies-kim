@@ -7,6 +7,8 @@
       <slot></slot>
     </main>
 
-    <footer class="bg-slate-800"></footer>
+    <footer class="bg-slate-800">
+      <links />
+    </footer>
   </div>
 </template>

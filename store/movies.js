@@ -9,12 +9,13 @@ export const useMovieStore = defineStore({
   }),
   actions: {
     async fetchMovies() {
+      const runtimeConfig = useRuntimeConfig();
+
       const options = {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNjAyN2M5NTYzNmRjMmUxMTFmNzllYzM5M2RlM2IyMSIsInN1YiI6IjY0OTMyZDgyNGJhNTIyMDEzOTM4YTkxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bgd-7B9FoPwZhvsY50GXj9ebtRhW8xQjBePgSXB7XHs",
+          Authorization: runtimeConfig.public.key,
         },
       };
 

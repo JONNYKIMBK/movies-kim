@@ -80,6 +80,7 @@ export default {
     let { id } = useRoute().params;
     let detail = ref({});
     let color = ref("text-red-500");
+    const runtimeConfig = useRuntimeConfig();
 
     const setColor = (detail) => {
       if (detail.vote_average >= 7) {
@@ -95,8 +96,7 @@ export default {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNjAyN2M5NTYzNmRjMmUxMTFmNzllYzM5M2RlM2IyMSIsInN1YiI6IjY0OTMyZDgyNGJhNTIyMDEzOTM4YTkxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Bgd-7B9FoPwZhvsY50GXj9ebtRhW8xQjBePgSXB7XHs",
+          Authorization: runtimeConfig.public.key,
         },
       };
 
@@ -111,6 +111,14 @@ export default {
     }
 
     fetchDetail();
+
+    watch(detail, () => {
+      if (detail.value.title) {
+        useHead({
+          title: detail.value.title,
+        });
+      }
+    });
 
     return {
       id,

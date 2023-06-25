@@ -4,8 +4,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import cards from "@/components/cards/cards.vue";
 
-export default {};
+useHead({
+  title: "Movies-Kim",
+});
 </script>
